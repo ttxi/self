@@ -51,3 +51,72 @@ nrm ls
 ```
 
 ![111](../../assets/images/v2-174238b02b6ea60f35ba2102e35e4eff_1440w.png)
+
+## npm 或 yarn 使用别名同时安装同一个包的两个版本
+
+npm 安装
+
+```sh
+## npm 别名安装写法
+npm install vue2@npm:vue@^2.6.14
+npm install vue3@npm:vue@^3.2.37
+```
+
+yarn 安装
+
+```sh
+## yarn 别名安装写法
+yarn add vue2@yarn:vue@^2.6.14
+yarn add vue3@yarn:vue@^3.2.37
+```
+
+这里以 npm 为例,安装完成后可以看到 package.json 已经有两个新的包了
+
+```json
+{
+  "dependencies": {
+    "vue2": "npm:vue@^2.6.14",
+    "vue3": "npm:vue@^3.2.37"
+  }
+}
+```
+
+也可以选择一个普通安装, 一个起别名安装
+
+## yarn
+
+### 添加依赖项
+
+```bash
+yarn add [package]
+yarn add [package]@[version]
+yarn add [package]@[tag]
+```
+
+## 为不同类别的依赖项添加依赖项
+
+```bash
+yarn add [package] --dev  # dev dependencies
+yarn add [package] --peer # peer dependencies
+```
+
+### 升级依赖
+
+```bash
+yarn up [package]
+yarn up [package]@[version]
+yarn up [package]@[tag]
+```
+
+### 删除依赖项
+
+```bash
+yarn remove [package]
+```
+
+### 升级 Yarn 本身
+
+```bash
+yarn set version latest
+yarn set version from sources
+```
