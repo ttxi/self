@@ -11,9 +11,9 @@ yarn config get registry
 ## 二、设置为淘宝镜像源（全局设置）
 
 ```shell
-npm config set registry https://registry.npm.taobao.org
+npm config set registry http://registry.npmmirror.com
 或
-yarn config set registry https://registry.npm.taobao.org
+yarn config set registry http://registry.npmmirror.com
 ```
 
 > 注意：npm 和 yarn 是两个不同的包管理器，如果两个都想用淘宝镜像，则分别都要设置
@@ -46,7 +46,7 @@ npm install nrm -g
 
 - npm ---- https://registry.npmjs.org
 - cnpm --- http://r.cnpmjs.org
-- taobao - https://registry.npm.taobao.org
+- taobao - http://registry.npmmirror.com
 - nj ----- https://registry.nodejitsu.com
 - npmMirror https://skimdb.npmjs.com/registry
 - edunpm - http://registry.enpmjs.org
