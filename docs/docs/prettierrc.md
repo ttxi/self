@@ -1,24 +1,5 @@
 # prettierr
 
-prettier.json
-
-```json
-{
-  "tabWidth": 2,
-  "useTabs": false,
-  "semi": false,
-  "singleQuote": false,
-  "quoteProps": "as-needed",
-  "jsxSingleQuote": false,
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "bracketSameLine": false,
-  "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "ignore",
-  "vueIndentScriptAndStyle": false
-}
-```
-
 js
 
 ```js
@@ -37,4 +18,23 @@ module.exports = {
   htmlWhitespaceSensitivity: 'ignore', // HTML 空白敏感度
   vueIndentScriptAndStyle: false, // Vue 文件脚本和样式标签缩进 <script>Vue 文件中的代码和标签是否缩进<style>。
 };
+```
+
+prettier.json
+
+```json
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": false,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "htmlWhitespaceSensitivity": "ignore",
+  "vueIndentScriptAndStyle": false
+}
 ```
