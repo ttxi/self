@@ -64,5 +64,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "authors": []
+  "authors": [],
+  "dependencies": {
+    "antd": "^5.16.0"
+  }
 }
