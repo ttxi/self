@@ -32,6 +32,12 @@ npm config set registry https://registry.npmjs.org
 yarn config set registry https://registry.yarnpkg.com
 ```
 
+## 下载指定版本的包,可通过淘宝的镜像文件下载
+
+```sh
+npm install jquery@1.7 --registry=https://registry.npm.taobao.org
+```
+
 如果你不记得 镜像源，可以借助 nrm 这个工具进行查询
 
 1.安装 nrm 工具
