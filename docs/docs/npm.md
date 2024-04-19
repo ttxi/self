@@ -60,7 +60,7 @@ npm install nrm -g
 
 ![111](../../assets/images/v2-174238b02b6ea60f35ba2102e35e4eff_1440w.png)
 
-## npm 或 yarn 使用别名同时安装同一个包的两个版本
+## 别名安装
 
 npm 安装
 
