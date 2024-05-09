@@ -32,6 +32,12 @@ npm config set registry https://registry.npmjs.org
 yarn config set registry https://registry.yarnpkg.com
 ```
 
+<InstallDependencies 
+  npm='npm config set registry https://registry.npmjs.org'
+  yarn='yarn config set registry https://registry.yarnpkg.com'
+/>
+</InstallDependencies>
+
 ## 下载指定版本的包,可通过淘宝的镜像文件下载
 
 ```sh
