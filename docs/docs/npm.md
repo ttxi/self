@@ -1,3 +1,11 @@
+---
+nav:
+  title: docs
+  order: -1
+order: -1
+title: npm 包管理
+---
+
 # npm
 
 ## 一、查看当前的镜像源
