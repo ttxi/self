@@ -26,3 +26,28 @@ html {
   font-size: 5.20833333333vw;
 }
 ```
+
+## font-family css 字体
+
+```css
+
+```
+
+## scrollbar
+
+```less
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+:hover::-webkit-scrollbar-thumb {
+  background: hsla(217, 8%, 55%, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+```
