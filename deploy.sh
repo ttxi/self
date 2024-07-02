@@ -16,3 +16,5 @@ git push -f git@github.com:ttxi/self.git main:gh-pages
 echo '发布完成'
 
 cd -
+
+sh push.sh
