@@ -163,10 +163,8 @@
 - **isFetching**: `boolean`  
   derived from `fetchStatus`，查询是否正在进行中。
 
-- \*\*isPaused
-
-\*\*: `boolean`  
- derived from `fetchStatus`，查询是否暂停。
+- **isPaused**: `boolean`  
+  derived from `fetchStatus`，查询是否暂停。
 
 - **isRefetching**: `boolean`  
   如果查询正在重新获取，则为 `true`。
