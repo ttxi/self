@@ -1,12 +1,12 @@
 [
   {
-    "text": "Guide",
-    "link": "/guide/",
-    "activeMatch": "/guide/"
+    "text": "BASE",
+    "link": "/base/",
+    "activeMatch": "/base/"
   },
   {
-    "text": "Hello World",
-    "link": "/hello/",
-    "activeMatch": "/hello/"
+    "text": "ReactQuery",
+    "link": "/react-query/",
+    "activeMatch": "/react-query/"
   }
 ]
