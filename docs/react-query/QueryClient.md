@@ -1,6 +1,6 @@
 # QueryClient
 
-### QueryClient（查询客户端）
+## QueryClient（查询客户端）
 
 `QueryClient` 可用于与缓存交互：
 
@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 await queryClient.prefetchQuery({ queryKey: ["posts"], queryFn: fetchPosts });
 ```
 
-### 可用方法
+## 可用方法
 
 - **queryClient.fetchQuery**
 - **queryClient.fetchInfiniteQuery**
@@ -51,7 +51,7 @@ await queryClient.prefetchQuery({ queryKey: ["posts"], queryFn: fetchPosts });
 
 ---
 
-### 配置项
+## 配置项
 
 - **queryCache**（可选）：关联的查询缓存。
 - **mutationCache**（可选）：关联的变更缓存。
@@ -59,9 +59,9 @@ await queryClient.prefetchQuery({ queryKey: ["posts"], queryFn: fetchPosts });
 
 ---
 
-### 方法详细介绍
+## 方法详细介绍
 
-#### **queryClient.fetchQuery**
+### **queryClient.fetchQuery**
 
 用于异步获取并缓存查询数据。返回数据或抛出错误。
 
@@ -95,7 +95,7 @@ try {
 
 ---
 
-#### **queryClient.fetchInfiniteQuery**
+### **queryClient.fetchInfiniteQuery**
 
 用于异步获取并缓存分页查询数据。
 
@@ -115,7 +115,7 @@ try {
 
 ---
 
-#### **queryClient.prefetchQuery**
+### **queryClient.prefetchQuery**
 
 用于预取查询数据，仅执行获取操作，不返回数据或抛出错误。
 
@@ -130,7 +130,7 @@ await queryClient.prefetchQuery({ queryKey, queryFn });
 
 ---
 
-#### **queryClient.prefetchInfiniteQuery**
+### **queryClient.prefetchInfiniteQuery**
 
 类似 `prefetchQuery`，但用于分页查询。
 
@@ -143,7 +143,7 @@ await queryClient.prefetchInfiniteQuery({ queryKey, queryFn });
 
 ---
 
-#### **queryClient.getQueryData**
+### **queryClient.getQueryData**
 
 同步获取缓存中的查询数据。
 
@@ -156,7 +156,7 @@ const data = queryClient.getQueryData(queryKey);
 
 ---
 
-#### **queryClient.ensureQueryData**
+### **queryClient.ensureQueryData**
 
 确保返回查询数据，若数据不存在，则调用 `fetchQuery`。
 
@@ -171,7 +171,7 @@ const data = await queryClient.ensureQueryData({ queryKey, queryFn });
 
 ---
 
-#### **queryClient.ensureInfiniteQueryData**
+### **queryClient.ensureInfiniteQueryData**
 
 与 `ensureQueryData` 类似，但用于分页查询。
 
@@ -186,7 +186,7 @@ const data = await queryClient.ensureInfiniteQueryData({
 
 ---
 
-#### **queryClient.getQueriesData**
+### **queryClient.getQueriesData**
 
 获取多个查询的缓存数据。
 
@@ -199,7 +199,7 @@ const data = queryClient.getQueriesData(filters);
 
 ---
 
-#### **queryClient.setQueryData**
+### **queryClient.setQueryData**
 
 同步更新缓存中的查询数据，若不存在则创建。
 
@@ -214,7 +214,7 @@ queryClient.setQueryData(queryKey, updater);
 
 ---
 
-#### **queryClient.getQueryState**
+### **queryClient.getQueryState**
 
 同步获取查询的状态。
 
@@ -224,7 +224,7 @@ const state = queryClient.getQueryState(queryKey);
 
 ---
 
-#### **queryClient.setQueriesData**
+### **queryClient.setQueriesData**
 
 用于批量更新多个查询的数据。
 
@@ -234,7 +234,7 @@ queryClient.setQueriesData(filters, updater);
 
 ---
 
-#### **queryClient.invalidateQueries**
+### **queryClient.invalidateQueries**
 
 使查询失效并触发重新获取数据。
 
@@ -248,7 +248,7 @@ await queryClient.invalidateQueries({ queryKey: ["posts"], exact, refetchType: "
 
 ---
 
-#### **queryClient.refetchQueries**
+### **queryClient.refetchQueries**
 
 手动触发查询重新获取数据。
 
@@ -258,7 +258,7 @@ await queryClient.refetchQueries({ queryKey: ["posts"], type: "active" });
 
 ---
 
-#### **queryClient.cancelQueries**
+### **queryClient.cancelQueries**
 
 取消正在进行的查询。
 
@@ -268,7 +268,7 @@ await queryClient.cancelQueries({ queryKey: ["posts"], exact: true });
 
 ---
 
-#### **queryClient.removeQueries**
+### **queryClient.removeQueries**
 
 移除缓存中的查询。
 
@@ -278,7 +278,7 @@ queryClient.removeQueries({ queryKey, exact: true });
 
 ---
 
-#### **queryClient.resetQueries**
+### **queryClient.resetQueries**
 
 重置查询至初始状态。
 
@@ -288,7 +288,7 @@ queryClient.resetQueries({ queryKey, exact: true });
 
 ---
 
-#### **queryClient.isFetching**
+### **queryClient.isFetching**
 
 返回当前正在获取数据的查询数。
 
@@ -300,7 +300,7 @@ if (queryClient.isFetching()) {
 
 ---
 
-#### **queryClient.isMutating**
+### **queryClient.isMutating**
 
 返回当前正在进行的变更数。
 
@@ -312,7 +312,7 @@ if (queryClient.isMutating()) {
 
 ---
 
-#### **queryClient.getDefaultOptions & setDefaultOptions**
+### **queryClient.getDefaultOptions & setDefaultOptions**
 
 获取或动态设置默认配置。
 
@@ -326,7 +326,7 @@ queryClient.setDefaultOptions({
 
 ---
 
-#### **queryClient.getQueryDefaults & setQueryDefaults**
+### **queryClient.getQueryDefaults & setQueryDefaults**
 
 获取或设置特定查询的默认配置。
 
@@ -336,7 +336,7 @@ queryClient.setQueryDefaults(["posts"], { queryFn: fetchPosts });
 
 ---
 
-#### **queryClient.getMutationDefaults & setMutationDefaults**
+### **queryClient.getMutationDefaults & setMutationDefaults**
 
 获取或设置特定变更的默认配置。
 
@@ -346,13 +346,13 @@ queryClient.setMutationDefaults(["addPost"], { mutationFn: addPost });
 
 ---
 
-#### **queryClient.getQueryCache & getMutationCache**
+### **queryClient.getQueryCache & getMutationCache**
 
 获取查询或变更的缓存对象。
 
 ---
 
-#### **queryClient.clear**
+### **queryClient.clear**
 
 清除所有缓存。
 
@@ -362,7 +362,7 @@ queryClient.clear();
 
 ---
 
-#### **queryClient.resumePausedMutations**
+### **queryClient.resumePausedMutations**
 
 恢复因网络问题暂停的变更。
 
