@@ -8,5 +8,10 @@
     "text": "ReactQuery",
     "link": "/react-query/",
     "activeMatch": "/react-query/"
+  },
+  {
+    "text": "开发技巧",
+    "link": "/skills/",
+    "activeMatch": "/skills/"
   }
 ]
