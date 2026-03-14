@@ -61,4 +61,133 @@ function addEvent(el, type, handler) {
 
 ---
 
-*（后续可在此追加更多技巧，如：提取公共工具函数、列表性能、状态结构设计等。）*
+## 2. 卫语句 / 提前 return (Guard Clauses)
+
+### 是什么
+
+**卫语句**：在函数开头用 `if` 处理异常分支或前置条件，直接 **return**（或 throw），主逻辑保持「无缩进」或少缩进，避免深层 `if-else` 嵌套。
+
+核心思想：**先处理「不满足就退出」的情况，再写主流程，让主流程一眼能读完**。
+
+### 适用场景
+
+- 参数校验、权限/登录态检查、空值/空数组提前返回。
+- 替代「嵌套 if-else」或「大段主逻辑包在 if 里」的写法。
+- 任何「先判断再做事」的逻辑，优先考虑「先判断不行就 return」。
+
+### 典型写法
+
+```javascript
+// ❌ 嵌套深，主逻辑被包在 if 里
+function submit(data) {
+  if (data) {
+    if (data.userId) {
+      if (isValid(data)) {
+        return api.post("/submit", data);
+      }
+    }
+  }
+  return null;
+}
+
+// ✅ 卫语句：先排除非法情况，主逻辑一条线
+function submit(data) {
+  if (!data?.userId) return null;
+  if (!isValid(data)) return null;
+  return api.post("/submit", data);
+}
+```
+
+### 注意
+
+- 卫语句后不要再接 `else`，直接写「正常路径」即可。
+- 若多种非法情况要返回不同错误信息，可保留多个 `if ... return`，或集中到一个「校验函数」里再 return。
+
+---
+
+## 3. 请求取消与竞态 (AbortController)
+
+### 是什么
+
+**竞态**：后发起的请求比先发起的请求更晚返回，若按返回顺序直接写状态，会把「旧结果」盖掉「新结果」（例如搜索框连续输入、Tab 切换加载不同列表）。
+
+**做法**：用 **AbortController** 在发起新请求时取消上一次请求，或根据「请求版本/id」在回调里忽略过期结果。
+
+### 适用场景
+
+- 搜索框输入、筛选条件变化触发的列表/详情请求。
+- Tab 或路由切换时，取消未完成的上一屏请求。
+- 任何「同一数据源会连续请求多次、只关心最新一次」的异步场景。
+
+### 典型写法
+
+**方式一：AbortController 取消上一次请求**
+
+```javascript
+let controller = null;
+
+async function search(keyword) {
+  controller?.abort();
+  controller = new AbortController();
+  const { signal } = controller;
+  const res = await fetch(`/api/search?q=${keyword}`, { signal });
+  const data = await res.json();
+  setResults(data);
+}
+```
+
+**方式二：React 里结合 useEffect 取消**
+
+```javascript
+useEffect(() => {
+  const ctrl = new AbortController();
+  fetchList(id, ctrl.signal).then(setList).catch(ignoreAbort);
+  return () => ctrl.abort();
+}, [id]);
+```
+
+### 注意
+
+- `fetch` 被 abort 会抛 `DOMException`，在 catch 里可判断 `err.name === "AbortError"` 后忽略，避免当业务错误处理。
+- 若用的是 axios，可用 `CancelToken` 或 axios 新版基于 AbortController 的 `signal`，同样在清理时 cancel。
+
+---
+
+## 4. 命名常量替代魔法值 (No Magic Numbers/Strings)
+
+### 是什么
+
+**魔法值**：在逻辑里直接写死的数字、字符串（如 `status === 1`、`type === "VIP"`），含义要靠注释或记忆才能懂。
+
+**做法**：用有语义的**命名常量**（或枚举）集中定义，业务代码里只出现常量名，便于修改和搜索。
+
+### 适用场景
+
+- 状态码、类型码、枚举值（订单状态、用户类型、接口 code）。
+- 配置类数字（超时时间、重试次数、分页 size）。
+- 多处复用的同一字符串（事件名、localStorage key、API path 片段）。
+
+### 典型写法
+
+```javascript
+// ❌ 魔法值
+if (order.status === 2) { /* 发货中 */ }
+setTimeout(fn, 3000);
+
+// ✅ 命名常量
+const OrderStatus = {
+  PENDING: 0,
+  PAID: 1,
+  SHIPPING: 2,
+  DONE: 3,
+};
+if (order.status === OrderStatus.SHIPPING) { /* 发货中 */ }
+
+const TOAST_DURATION_MS = 3000;
+setTimeout(fn, TOAST_DURATION_MS);
+```
+
+### 注意
+
+- 常量可放在使用处同文件顶部、或统一放在 `constants` 模块，按业务域拆分（如 `orderConstants.js`）。
+- 若用 TypeScript，可 `const enum` 或 `as const` 对象，既去魔法值又保留类型收窄。
